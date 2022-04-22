@@ -1,4 +1,4 @@
-package com.soma.lightening.oauth;
+package com.soma.lightening.security.oauth;
 
 
 import lombok.Getter;

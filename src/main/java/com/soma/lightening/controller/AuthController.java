@@ -2,7 +2,7 @@ package com.soma.lightening.controller;
 
 import com.soma.lightening.controller.dto.CommonResponse;
 import com.soma.lightening.exception.error.OAuth2LoginFailedException;
-import com.soma.lightening.oauth.GithubOAuthUserInfo;
+import com.soma.lightening.security.oauth.GithubOAuthUserInfo;
 import com.soma.lightening.service.OAuth2Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

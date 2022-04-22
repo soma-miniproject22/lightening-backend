@@ -3,7 +3,7 @@ package com.soma.lightening.service;
 import com.soma.lightening.entity.Authority;
 import com.soma.lightening.entity.OAuth2Account;
 import com.soma.lightening.exception.error.OAuth2LoginFailedException;
-import com.soma.lightening.oauth.GithubOAuthUserInfo;
+import com.soma.lightening.security.oauth.GithubOAuthUserInfo;
 import com.soma.lightening.repository.OAuth2AccountRepository;
 import com.soma.lightening.security.TokenProvider;
 import com.soma.lightening.security.oauth.GithubAuth;
