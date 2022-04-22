@@ -24,8 +24,7 @@ public class AuthController {
         // 깃허브 로그인 화면 URL을 응답한다
         CommonResponse response = CommonResponse.builder()
                 .success(true)
-                .response("https://github.com/login/oauth/authorize?client_id=0c696e3a1df74b0acf03&" +
-                        "redirect_uri=http://localhost:8080/api/oauth2/code/github?redirect=" + redirect)
+                .response(oAuth2Service.getGithubLoginUrl(redirect))
                 .build();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
