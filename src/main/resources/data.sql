@@ -1,0 +1,6 @@
+/*
+ 임베디드 h2가 생성될 때마다 초기 데이터 생성
+*/
+
+INSERT INTO AUTHORITY (AUTHORITY_NAME) values ('ROLE_USER');
+INSERT INTO AUTHORITY (AUTHORITY_NAME) values ('ROLE_ADMIN');
