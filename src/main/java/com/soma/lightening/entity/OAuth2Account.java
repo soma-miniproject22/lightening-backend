@@ -1,5 +1,6 @@
 package com.soma.lightening.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.soma.lightening.board.domain.Participate;
 import com.soma.lightening.board.domain.Post;
 import lombok.Builder;
@@ -50,10 +51,12 @@ public class OAuth2Account {
     private Set<Authority> authorities;
 
     // account마다 가지고 있는 post들
+    @JsonIgnore
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private List<Post> posts;
 
     // 마찬가지로 다른 게시글에 대한 참가정보는 participated를 이용한다
+    @JsonIgnore
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private List<Participate> participates;
 
@@ -70,11 +73,10 @@ public class OAuth2Account {
         this.tokenWeight = 1L; // 초기 가중치는 1
     }
 
-    // tempAccountConstructor for Testing
+    // tempConstructor
     public OAuth2Account(String nickname){
         this.nickname = nickname;
     }
-
 
     public void increaseTokenWeight() {
         this.tokenWeight++;
