@@ -1,10 +1,13 @@
 package com.soma.lightening.entity;
 
+import com.soma.lightening.board.domain.Participate;
+import com.soma.lightening.board.domain.Post;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -45,6 +48,14 @@ public class OAuth2Account {
             joinColumns = {@JoinColumn(name = "account_id", referencedColumnName = "account_id")},
             inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "authority_name")})
     private Set<Authority> authorities;
+
+    // account마다 가지고 있는 post들
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private List<Post> posts;
+
+    // 마찬가지로 다른 게시글에 대한 참가정보는 participated를 이용한다
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private List<Participate> participates;
 
     @Builder
     public OAuth2Account(String password, String provider, String providerId, String nickname, Set<Authority> authorities, boolean activated) {
