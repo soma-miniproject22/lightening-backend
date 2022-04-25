@@ -59,6 +59,12 @@ public class OAuth2Account {
         this.tokenWeight = 1L; // 초기 가중치는 1
     }
 
+    // tempAccountConstructor for Testing
+    public OAuth2Account(String nickname){
+        this.nickname = nickname;
+    }
+
+
     public void increaseTokenWeight() {
         this.tokenWeight++;
     }
