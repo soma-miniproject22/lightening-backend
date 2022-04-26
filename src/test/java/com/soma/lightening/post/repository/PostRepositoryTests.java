@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 
 @SpringBootTest
-@ActiveProfiles("prod") // 원래안댐
+@ActiveProfiles("local")
 public class PostRepositoryTests {
     @Autowired
     private PostRepository postRepository;

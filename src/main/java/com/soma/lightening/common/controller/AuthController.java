@@ -46,8 +46,8 @@ public class AuthController {
         } catch (OAuth2LoginFailedException e) {
             // OAuth 로그인 실패 시
             e.printStackTrace();
-            response.sendRedirect("http://localhost:3000"); // 기본 경로로 리다이렉트
+            response.sendRedirect(oAuth2Service.getFrontendUrl()); // 기본 경로로 리다이렉트
         }
-        response.sendRedirect("http://localhost:3000/redirect?access_token=" + accessToken + "&redirect=" + redirect);
+        response.sendRedirect(oAuth2Service.getFrontendUrl() + "/redirect?access_token=" + accessToken + "&redirect=" + redirect);
     }
 }

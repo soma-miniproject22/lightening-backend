@@ -37,6 +37,9 @@ public class OAuth2Service {
                 "?client_id=" + githubAuth.getClientId() +
                 "&redirect_uri=" + githubAuth.getDomain() + "/api/oauth2/code/github?redirect=" + redirect;
     }
+    public String getFrontendUrl() {
+        return githubAuth.getFrontendDomain();
+    }
 
     public GithubOAuthUserInfo getGithubUserInfo(String code) throws OAuth2LoginFailedException {
         // 깃허브로부터 사용자 정보 조회를 위한 액세스토큰 파라미터 발급
