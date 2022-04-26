@@ -1,6 +1,7 @@
 package com.soma.lightening.post.repository;
 
 import com.soma.lightening.post.domain.Post;
+import com.soma.lightening.post.domain.PostTag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +19,7 @@ public class PostRepositoryTests {
     @Test
     @Transactional
     void postSaveTest() {
-        Post post = Post.newPost(null, "오늘 오후까지", new Date(),"aa",1024);
+        Post post = Post.newPost(null, "오늘 오후까지", PostTag.MEAL, new Date(),"aa",1024);
         post = postRepository.saveAndFlush(post);
         System.out.println(post.getDate());
     }
