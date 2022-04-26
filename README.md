@@ -6,11 +6,11 @@
   
   <em>url/posts</em> 전체 포스트 출력
   
-  <em>url/posts/{postTag}</em> 태그로 구분 
+  <em>url/posts/tag/{postTag}</em> 태그로 구분 
   
   <strong>MEAL, COFFEE, ALCOHOL, GAME, ETC ( 밥 커피 술 게임 기타 )</strong>
   
-  <em>url/posts/{postType}</em> 모집상태로 구분
+  <em>url/posts/type/{postType}</em> 모집상태로 구분
   
   <strong>RECRUIT, COMPLETED ( 모집 / 모집환료 )</strong>
 
