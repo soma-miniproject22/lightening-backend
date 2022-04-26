@@ -28,7 +28,7 @@ public class PostApiController {
         return ret;
     }
 
-    @GetMapping("/api/posts/{postTag}")
+    @GetMapping("/api/posts/tag/{postTag}")
     public List<PostDto> postsByTag(@PathVariable("postTag") String postTag){
         PostTag curTag = PostTag.valueOf(postTag);
         List<Post> posts = postRepository.findAllByPostTag(curTag);
@@ -37,8 +37,8 @@ public class PostApiController {
         return ret;
     }
 
-    @GetMapping("/api/posts/{isRecruit}")
-    public List<PostDto> postsByRecruit(@PathVariable("isRecruit") String postType){
+    @GetMapping("/api/posts/type/{postType}")
+    public List<PostDto> postsByRecruit(@PathVariable("postType") String postType){
         PostType curType = PostType.valueOf(postType);
         List<Post> posts = postRepository.findAllByPostType(curType);
         List<PostDto> ret = posts.stream().map(p -> new PostDto(p)).collect(Collectors.toList());
