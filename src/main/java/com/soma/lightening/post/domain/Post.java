@@ -26,7 +26,7 @@ public class Post {
     private OAuth2Account account;
 
     // 주인 엔티티 - Participated
-    @OneToMany(mappedBy="post", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Like> likeList = new ArrayList<>();
 
     @Enumerated(value = EnumType.STRING)
