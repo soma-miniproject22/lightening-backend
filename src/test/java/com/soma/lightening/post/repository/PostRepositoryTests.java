@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 @SpringBootTest
-@ActiveProfiles("prod") // 원래안댐
+@ActiveProfiles("local")
 public class PostRepositoryTests {
     @Autowired
     private PostRepository postRepository;
