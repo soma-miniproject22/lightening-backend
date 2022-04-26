@@ -2,6 +2,8 @@ package com.soma.lightening.post.repository;
 
 import com.soma.lightening.common.entity.OAuth2Account;
 import com.soma.lightening.common.repository.OAuth2AccountRepository;
+import com.soma.lightening.post.domain.Like;
+import com.soma.lightening.post.domain.LikeType;
 import com.soma.lightening.post.domain.Post;
 import com.soma.lightening.post.domain.PostTag;
 import com.soma.lightening.post.service.PostService;
@@ -35,7 +37,6 @@ public class PostRepositoryTests {
 
     @Test
     @Transactional
-    @Rollback(false)
     void postsPrint(){
         OAuth2Account account = new OAuth2Account();
         oAuth2AccountRepository.save(account);
@@ -56,7 +57,10 @@ public class PostRepositoryTests {
 
         List<Post> byTag = postRepository.findAllByPostTag(PostTag.MEAL);
 
+        Like like = Like.newLike(account, post, LikeType.PARTICIPATE);
+
         for(var cur : byTag)
-            System.out.println(cur.getPostContent());
+            for(var cur2 : cur.getLikeList())
+                System.out.println(cur2.getAccount());
     }
 }

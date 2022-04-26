@@ -53,7 +53,7 @@ public class PostApiController {
         private Long accountId; // 작정자 id
         private PostTag postTag; // post 태그
         private PostType postType; // post 모집완료상태
-        private List<LikeDto> likes; // 관심/참여 인원
+        //private List<LikeDto> likes; // 관심/참여 인원
         private String postContent; // 내용
         private Date meetDate; // 약속 시간
         private Date recruitEndDate; // 게시 종료 시간
@@ -63,7 +63,7 @@ public class PostApiController {
             this.postId = post.getId();
             this.accountId = post.getAccount().getId();
             this.postType = post.getPostType();
-            this.likes = post.getLikeList().stream().map(l -> new LikeDto(l)).collect(Collectors.toList());
+            //this.likes = post.getLikeList().stream().map(l -> new LikeDto(l)).collect(Collectors.toList());
             this.postTag = post.getPostTag();
             this.postContent = post.getPostContent();
             this.meetDate = post.getDate();

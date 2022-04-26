@@ -12,8 +12,7 @@ import java.util.List;
 
 // 원래 @Setter는 지양
 @Entity(name = "post")
-@Getter
-@Setter
+@Getter @Setter
 public class Post {
     @Id
     @Column(name="post_id")
