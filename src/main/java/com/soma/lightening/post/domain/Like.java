@@ -1,5 +1,6 @@
 package com.soma.lightening.post.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.soma.lightening.common.entity.OAuth2Account;
 import lombok.Getter;
 import lombok.Setter;
