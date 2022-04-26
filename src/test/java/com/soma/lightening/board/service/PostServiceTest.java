@@ -2,7 +2,7 @@ package com.soma.lightening.board.service;
 
 import com.soma.lightening.board.domain.Post;
 import com.soma.lightening.board.repository.PostRepository;
-import com.soma.lightening.entity.OAuth2Account;
+import com.soma.lightening.common.entity.OAuth2Account;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

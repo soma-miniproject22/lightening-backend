@@ -1,7 +1,6 @@
 package com.soma.lightening.board;
 
 import com.soma.lightening.board.domain.Post;
-import com.soma.lightening.entity.OAuth2Account;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

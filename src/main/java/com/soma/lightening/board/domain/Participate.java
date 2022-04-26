@@ -1,6 +1,6 @@
 package com.soma.lightening.board.domain;
 
-import com.soma.lightening.entity.OAuth2Account;
+import com.soma.lightening.common.entity.OAuth2Account;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

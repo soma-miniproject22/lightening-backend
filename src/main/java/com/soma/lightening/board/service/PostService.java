@@ -3,7 +3,7 @@ package com.soma.lightening.board.service;
 import com.soma.lightening.board.domain.Post;
 import com.soma.lightening.board.repository.AccountRepository;
 import com.soma.lightening.board.repository.PostRepository;
-import com.soma.lightening.entity.OAuth2Account;
+import com.soma.lightening.common.entity.OAuth2Account;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
