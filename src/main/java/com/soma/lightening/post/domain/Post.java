@@ -25,13 +25,17 @@ public class Post {
     @JoinColumn(name="account_id")
     private OAuth2Account account;
 
-    // 주인 엔티티 - Participated
+    // 주인 엔티티 - Like
     @OneToMany(mappedBy="post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Like> likeList = new ArrayList<>();
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "post_type")
     private PostType postType; // RECRUIT, COMPLETED
+
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "post_tag")
+    private PostTag postTag; // MEAL, COFFEE, ALCOHOL, GAME, ETC, // 밥 커피 술 게임 기타
 
     @Column(name = "max_count")
     private Integer maxCount;
@@ -51,12 +55,11 @@ public class Post {
     @Column(name = "appointment_date")
     private String appointmentDate; // 약속 시간, 스트링임
 
-
-
-    public static Post newPost(OAuth2Account account, String appointmentDate, Date recruitEndDate,String postContent, int maxCount){
+    public static Post newPost(OAuth2Account account, String appointmentDate, PostTag postTag, Date recruitEndDate, String postContent, int maxCount){
         Post post = new Post();
         post.setAccount(account);
         post.setAppointmentDate(appointmentDate);
+        post.setPostTag(postTag);
         post.setRecruitEndDate(recruitEndDate);
         post.setMaxCount(maxCount);
         post.setPostContent(postContent);
