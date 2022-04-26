@@ -1,7 +1,7 @@
 package com.soma.lightening.exception;
 
-import com.soma.lightening.controller.dto.CommonResponse;
-import com.soma.lightening.controller.dto.ErrorResponse;
+import com.soma.lightening.common.controller.dto.CommonResponse;
+import com.soma.lightening.common.controller.dto.ErrorResponse;
 import com.soma.lightening.exception.error.DuplicateMemberException;
 import com.soma.lightening.exception.error.InvalidRefreshTokenException;
 import org.springframework.http.ResponseEntity;
