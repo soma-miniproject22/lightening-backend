@@ -99,12 +99,14 @@ public class OAuth2Service {
             Authority authority = Authority.builder()
                     .authorityName("ROLE_USER")
                     .build();
+
             // 생성자 안에서 username을 providerid + provider로 지정한다.
             account = oAuth2AccountRepository.saveAndFlush(OAuth2Account.builder()
                             .providerId(userInfo.getId())
                             .provider(PROVIDER)
                             .password(passwordEncoder.encode(NO_PASSWORD))
                             .nickname(userInfo.getName())
+                            .profileImage(userInfo.getAvatar_url())
                             .authorities(Collections.singleton(authority))
                             .activated(true)
                     .build());
