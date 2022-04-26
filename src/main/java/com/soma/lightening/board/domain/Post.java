@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.soma.lightening.entity.OAuth2Account;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -29,7 +28,7 @@ public class Post {
     private List<Participate> participates = new ArrayList<>();
 
     @Enumerated
-    private RECRUIT_CONDITION recruitCondition; // RECRUIT, NON_RECRUIT
+    private RecruitCondition recruitCondition; // RECRUIT, NON_RECRUIT
 
     // String이면 split으로 태그 사용?
     private String recruitType;
@@ -50,7 +49,7 @@ public class Post {
         post.setEndTime(endTime);
 
         // default
-        post.recruitCondition = RECRUIT_CONDITION.RECRUIT;
+        post.recruitCondition = RecruitCondition.RECRUIT;
 
         return post;
     }

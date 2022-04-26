@@ -1,13 +1,12 @@
 package com.soma.lightening.board.controller;
 
-import com.soma.lightening.board.domain.PARTICIPATE_CONDITION;
+import com.soma.lightening.board.domain.ParticipateCondition;
 import com.soma.lightening.board.domain.Participate;
 import com.soma.lightening.board.domain.Post;
-import com.soma.lightening.board.domain.RECRUIT_CONDITION;
+import com.soma.lightening.board.domain.RecruitCondition;
 import com.soma.lightening.board.repository.PostRepository;
 import lombok.*;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
@@ -32,7 +31,7 @@ public class PostApiController {
     static class PostDto{
         private Long id;
         private Long accountId;
-        private RECRUIT_CONDITION recruit_condition;
+        private RecruitCondition recruitCondition;
         private List<ParticipateDto> participates;
         private String recruitType;
         private String body;
@@ -43,7 +42,7 @@ public class PostApiController {
         public PostDto(Post post){
             this.id = post.getId();
             this.accountId = post.getAccount().getId();
-            this.recruit_condition = post.getRecruitCondition();
+            this.recruitCondition = post.getRecruitCondition();
             this.participates = post.getParticipates().stream().map(p -> new ParticipateDto(p)).collect(Collectors.toList());
             this.recruitType = post.getRecruitType();
             this.body = post.getBody();
@@ -57,7 +56,7 @@ public class PostApiController {
     @Getter @Setter
     static class ParticipateDto{
         private Long accountId;
-        private PARTICIPATE_CONDITION participateCondition;
+        private ParticipateCondition participateCondition;
 
         public ParticipateDto(Participate participate) {
             this.accountId = participate.getAccount().getId();

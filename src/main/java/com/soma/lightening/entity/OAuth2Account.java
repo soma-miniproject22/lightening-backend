@@ -50,16 +50,6 @@ public class OAuth2Account {
             inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "authority_name")})
     private Set<Authority> authorities;
 
-    // account마다 가지고 있는 post들
-    @JsonIgnore
-    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
-    private List<Post> posts;
-
-    // 마찬가지로 다른 게시글에 대한 참가정보는 participated를 이용한다
-    @JsonIgnore
-    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
-    private List<Participate> participates;
-
     @Builder
     public OAuth2Account(String password, String provider, String providerId, String nickname, Set<Authority> authorities, boolean activated) {
         this.username = providerId + provider;
@@ -71,11 +61,6 @@ public class OAuth2Account {
         this.authorities = authorities;
         this.activated = activated;
         this.tokenWeight = 1L; // 초기 가중치는 1
-    }
-
-    // tempConstructor
-    public OAuth2Account(String nickname){
-        this.nickname = nickname;
     }
 
     public void increaseTokenWeight() {

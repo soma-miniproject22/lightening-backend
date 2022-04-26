@@ -26,5 +26,5 @@ public class Participate {
     private Post post;
 
     @Enumerated
-    private PARTICIPATE_CONDITION participateCondition; // NONE, CURIOUS, PARTICIPATE
+    private ParticipateCondition participateCondition; // NONE, CURIOUS, PARTICIPATE
 }

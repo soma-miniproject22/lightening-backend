@@ -30,8 +30,8 @@ public class PostServiceTest {
 
     @Test
     public void Post작성() {
-        OAuth2Account account = new OAuth2Account("tempA");
-        accountService.join(account);
+        OAuth2Account account = new OAuth2Account();
+        //accountService.join(account);
 
         System.out.println(account.getId());
 
@@ -43,10 +43,10 @@ public class PostServiceTest {
 
     @Test
     public void 모든Post조회() {
-        OAuth2Account account = new OAuth2Account("tempA");
-        OAuth2Account account2 = new OAuth2Account("tempB");
-        accountService.join(account);
-        accountService.join(account2);
+        OAuth2Account account = new OAuth2Account();
+        OAuth2Account account2 = new OAuth2Account();
+//        accountService.join(account);
+//        accountService.join(account2);
 
         System.out.println(account.getId());
         System.out.println(account2.getId());

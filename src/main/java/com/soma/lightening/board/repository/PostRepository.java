@@ -20,6 +20,7 @@ public class PostRepository {
         return em.find(Post.class, id);
     }
 
+    // fetch join이 필요할 것 같다
     public List<Post> findAll(){
         return em.createQuery("select p from Post p", Post.class).getResultList();
     }

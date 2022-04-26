@@ -13,9 +13,9 @@ public class AccountService {
     private final AccountRepository accountRepository;
 
     // git 로그인이라 회원가입이 없어서 중복 조회는 안하였는데 뭔가 필요할 것 같습니다..
-    @Transactional
-    public Long join(OAuth2Account account) {
-        accountRepository.save(account);
-        return account.getId();
-    }
+    //    @Transactional
+    //    public Long join(OAuth2Account account) {
+    //        accountRepository.save(account);
+    //        return account.getId();
+    //    }
 }

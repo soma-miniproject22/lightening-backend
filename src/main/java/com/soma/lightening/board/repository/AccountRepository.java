@@ -11,9 +11,9 @@ import javax.persistence.EntityManager;
 public class AccountRepository {
     private final EntityManager em;
 
-    public void save(OAuth2Account account){
-        em.persist(account);
-    }
+//    public void save(OAuth2Account account){
+//        em.persist(account);
+//    }
 
     public OAuth2Account findOne(Long id){
         return em.find(OAuth2Account.class, id);

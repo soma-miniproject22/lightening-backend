@@ -1,5 +1,5 @@
 package com.soma.lightening.board.domain;
 
-public enum RECRUIT_CONDITION {
+public enum RecruitCondition {
     RECRUIT, NON_RECRUIT,
 }
