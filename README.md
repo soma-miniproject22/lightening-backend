@@ -2,6 +2,14 @@
 
 POST API
 
+<API URL>
+  
+url/posts 전체 포스트 출력
+  
+url/posts/{postTag} 태그로 구분
+  
+url/posts/{postType} 모집상태로 구분
+
 < Post >
 
 Long postId; // 포스트 id
@@ -22,7 +30,6 @@ Date recruitEndDate; // 게시 종료 시간
   
 int maxCount; // 최대 인원
 
-  
   
   
 < Like 참여자 >
