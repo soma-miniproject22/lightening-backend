@@ -1,10 +1,14 @@
 package com.soma.lightening.common.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.soma.lightening.board.domain.Participate;
+import com.soma.lightening.board.domain.Post;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
