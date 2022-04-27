@@ -16,7 +16,9 @@
 
 ### < Post >
 Long postId; // 포스트 id<br>
-Long accountId; // 작정자 id<br>
+Long accountId; // 작성자 pk id<br>
+String accountNickname; <br>
+String accountImage; <br>
 PostTag postTag; // post 태그<br>
 PostType postType; // post 모집완료상태<br>
 List<LikeDto> likes; // 관심/참여 인원<br>
