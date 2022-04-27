@@ -24,9 +24,9 @@ public class Post {
     @JoinColumn(name="account_id")
     private OAuth2Account account;
 
-    // 주인 엔티티 - Like
+    // 주인 엔티티 - Emotion
     @OneToMany(mappedBy="post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Like> likeList = new ArrayList<>();
+    private List<Emotion> emotionList = new ArrayList<>();
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "post_type")
