@@ -4,8 +4,11 @@ import com.soma.lightening.common.entity.OAuth2Account;
 import com.soma.lightening.common.repository.OAuth2AccountRepository;
 import com.soma.lightening.post.domain.Post;
 import com.soma.lightening.post.domain.PostTag;
+import com.soma.lightening.post.domain.PostType;
 import com.soma.lightening.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,11 +36,12 @@ public class PostService {
         return post.getId();
     }
 
-    public List<Post> findPosts(){
-        return postRepository.findAll();
+    public Page<Post> findPosts(Pageable pageable){
+        return postRepository.findAll(pageable);
     }
-
-    public List<Post> findPostsByTag(PostTag postTag){
-        return postRepository.findAllByPostTag(postTag);
+    public Page<Post> findPostsByTag(PostTag postTag, Pageable pageable){
+        return postRepository.findAllByPostTag(postTag, pageable);
     }
+    public Page<Post> findPostsByType(PostType postType, Pageable pageable){ return postRepository.findAllByPostType(postType, pageable);}
+    public Page<Post> findPostsByTagAndType(PostTag postTag, PostType postType, Pageable pageable){ return postRepository.findAllByPostTagAndPostType(postTag, postType,pageable);}
 }

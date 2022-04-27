@@ -9,6 +9,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,6 +40,7 @@ public class PostRepositoryTests {
 
     @Test
     @Transactional
+    @Rollback(false)
     void postsPrint(){
         OAuth2Account account = new OAuth2Account("asdasdsafasf","이상빈");
         oAuth2AccountRepository.save(account);
@@ -54,11 +56,6 @@ public class PostRepositoryTests {
 
         Post p = postRepository.findById(cid).get();
         p.setPostType(PostType.COMPLETED);
-
-        List<Post> all = postRepository.findAll();
-
-        for(var cur : all)
-            System.out.println(cur.getPostContent());
     }
 
     @Test
