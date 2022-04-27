@@ -60,7 +60,7 @@ public class PostApiController {
         private String accountImage;
         private PostTag postTag; // post 태그
         private PostType postType; // post 모집완료상태
-        private List<LikeDto> likes; // 관심/참여 인원
+        private List<EmotionDto> emotions; // 관심/참여 인원
         private String postContent; // 내용
         private Date meetDate; // 약속 시간
         private Date recruitEndDate; // 게시 종료 시간
@@ -73,7 +73,7 @@ public class PostApiController {
             this.accountUsername = post.getAccount().getUsername();
             this.accountImage = post.getAccount().getProfileImage();
             this.postType = post.getPostType();
-            this.likes = post.getLikeList().stream().map(l -> new LikeDto(l)).collect(Collectors.toList());
+            this.emotions = post.getEmotionList().stream().map(e -> new EmotionDto(e)).collect(Collectors.toList());
             this.postTag = post.getPostTag();
             this.postContent = post.getPostContent();
             this.meetDate = post.getDate();
@@ -84,15 +84,15 @@ public class PostApiController {
 
     @Data
     @Getter
-    static class LikeDto{
+    static class EmotionDto{
         private Long accountId; // 참여자
         private String accountUsername; // 참여자 아이디
-        private LikeType likeType; // 참여 타입(관심, 참가)
+        private EmotionType emotionType; // 참여 타입(관심, 참가)
 
-        public LikeDto(Like like) {
-            this.accountId = like.getAccount().getId();
-            this.accountUsername = like.getAccount().getUsername();
-            this.likeType = like.getLikeType();
+        public EmotionDto(Emotion emotion) {
+            this.accountId = emotion.getAccount().getId();
+            this.accountUsername = emotion.getAccount().getUsername();
+            this.emotionType = emotion.getEmotionType();
         }
     }
 }
