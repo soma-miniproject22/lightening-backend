@@ -23,7 +23,6 @@ public class AuthController {
     public ResponseEntity<CommonResponse> authorizeGithub(String redirect) throws IOException {
         // 깃허브 로그인 화면 URL을 응답한다
         CommonResponse response = CommonResponse.builder()
-                .success(true)
                 .response(oAuth2Service.getGithubLoginUrl(redirect))
                 .build();
         return new ResponseEntity<>(response, HttpStatus.OK);
