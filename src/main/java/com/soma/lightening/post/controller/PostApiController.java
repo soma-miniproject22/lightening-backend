@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
@@ -21,27 +22,30 @@ public class PostApiController {
     private final PostRepository postRepository;
 
     @GetMapping("/api/posts")
-    public List<PostDto> posts(){
-        List<Post> posts = postRepository.findAll();
-        List<PostDto> ret = posts.stream().map(p -> new PostDto(p)).collect(Collectors.toList());
+    public List<PostDto> posts(@RequestParam(value="tag", defaultValue="NULL") String postTag, @RequestParam(value="type", defaultValue="NULL") String postType){
+        List<Post> posts;
+        List<PostDto> ret;
 
-        return ret;
-    }
-
-    @GetMapping("/api/posts/tag/{postTag}")
-    public List<PostDto> postsByTag(@PathVariable("postTag") String postTag){
-        PostTag curTag = PostTag.valueOf(postTag);
-        List<Post> posts = postRepository.findAllByPostTag(curTag);
-        List<PostDto> ret = posts.stream().map(p -> new PostDto(p)).collect(Collectors.toList());
-
-        return ret;
-    }
-
-    @GetMapping("/api/posts/type/{postType}")
-    public List<PostDto> postsByRecruit(@PathVariable("postType") String postType){
-        PostType curType = PostType.valueOf(postType);
-        List<Post> posts = postRepository.findAllByPostType(curType);
-        List<PostDto> ret = posts.stream().map(p -> new PostDto(p)).collect(Collectors.toList());
+        if(postTag.equals("NULL") && postType.equals("NULL")) {
+            posts = postRepository.findAll();
+            ret = posts.stream().map(p -> new PostDto(p)).collect(Collectors.toList());
+        }
+        else if(postTag.equals("NULL")){
+            PostType curType = PostType.valueOf(postType);
+            posts = postRepository.findAllByPostType(curType);
+            ret = posts.stream().map(p -> new PostDto(p)).collect(Collectors.toList());
+        }
+        else if(postType.equals("NULL")){
+            PostTag curTag = PostTag.valueOf(postTag);
+            posts = postRepository.findAllByPostTag(curTag);
+            ret = posts.stream().map(p -> new PostDto(p)).collect(Collectors.toList());
+        }
+        else{
+            PostTag curTag = PostTag.valueOf(postTag);
+            PostType curType = PostType.valueOf(postType);
+            posts = postRepository.findAllByPostTagAndPostType(curTag, curType);
+            ret = posts.stream().map(p -> new PostDto(p)).collect(Collectors.toList());
+        }
 
         return ret;
     }
