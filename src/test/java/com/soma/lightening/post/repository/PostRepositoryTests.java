@@ -2,10 +2,7 @@ package com.soma.lightening.post.repository;
 
 import com.soma.lightening.common.entity.OAuth2Account;
 import com.soma.lightening.common.repository.OAuth2AccountRepository;
-import com.soma.lightening.post.domain.Like;
-import com.soma.lightening.post.domain.LikeType;
-import com.soma.lightening.post.domain.Post;
-import com.soma.lightening.post.domain.PostTag;
+import com.soma.lightening.post.domain.*;
 import com.soma.lightening.post.service.PostService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,29 +35,24 @@ public class PostRepositoryTests {
     @Test
     @Transactional
     void postsPrint(){
-        OAuth2Account account = new OAuth2Account();
+        OAuth2Account account = new OAuth2Account("asdasdsafasf","이상빈");
         oAuth2AccountRepository.save(account);
 
-        OAuth2Account account2 = new OAuth2Account();
+        OAuth2Account account2 = new OAuth2Account("wasdsadasdasdasd","김수홍");
         oAuth2AccountRepository.save(account2);
 
         Long id = postService.newPost(account.getId(),"오늘 오후까지", PostTag.MEAL, new Date(), "tempA",1024);
         Post post = postRepository.findById(id).get();
         postService.newPost(account.getId(),"오늘 오후까지", PostTag.COFFEE, new Date(), "tempB",1024);
-        postService.newPost(account2.getId(),"오늘 오후까지", PostTag.MEAL, new Date(), "tempC",1024);
+        Long cid = postService.newPost(account2.getId(), "오늘 오후까지", PostTag.ALCOHOL, new Date(), "tempC", 1024);
         postService.newPost(account2.getId(),"오늘 오후까지", PostTag.MEAL, new Date(), "tempD",1024);
+
+        Post p = postRepository.findById(cid).get();
+        p.setPostType(PostType.COMPLETED);
 
         List<Post> all = postRepository.findAll();
 
         for(var cur : all)
             System.out.println(cur.getPostContent());
-
-        List<Post> byTag = postRepository.findAllByPostTag(PostTag.MEAL);
-
-        Like like = Like.newLike(account, post, LikeType.PARTICIPATE);
-
-        for(var cur : byTag)
-            for(var cur2 : cur.getLikeList())
-                System.out.println(cur2.getAccount());
     }
 }

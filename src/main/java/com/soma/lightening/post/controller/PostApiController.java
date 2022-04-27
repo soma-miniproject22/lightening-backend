@@ -55,6 +55,8 @@ public class PostApiController {
     static class PostDto{
         private Long postId; // 포스트 id
         private Long accountId; // 작정자 id
+        private String accountNickname;
+        private String accountImage;
         private PostTag postTag; // post 태그
         private PostType postType; // post 모집완료상태
         //private List<LikeDto> likes; // 관심/참여 인원
@@ -66,6 +68,8 @@ public class PostApiController {
         public PostDto(Post post){
             this.postId = post.getId();
             this.accountId = post.getAccount().getId();
+            this.accountNickname = post.getAccount().getNickname();
+            this.accountImage = post.getAccount().getProfileImage();
             this.postType = post.getPostType();
             //this.likes = post.getLikeList().stream().map(l -> new LikeDto(l)).collect(Collectors.toList());
             this.postTag = post.getPostTag();
