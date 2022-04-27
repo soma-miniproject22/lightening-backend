@@ -24,7 +24,7 @@ String accountNickname; // 작성자 닉네임<br>
 String accountImage; <br>
 PostTag postTag; // post 태그<br>
 PostType postType; // post 모집완료상태<br>
-Emotion<EmotionDto> likes; // 관심/참여 인원<br>
+List<EmotionDto> emotions; // 관심/참여 인원<br>
 String postContent; // 내용<br>
 Date meetDate; // 약속 시간<br>
 Date recruitEndDate; // 게시 종료 시간<br>
