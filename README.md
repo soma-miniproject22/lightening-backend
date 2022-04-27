@@ -13,6 +13,8 @@
   parameter "type" 모집상태로 구분
   
   <strong>RECRUIT, COMPLETED ( 모집 / 모집환료 )</strong>
+  
+  parameter "page" "size" 페이징 관련 변수
 
 ### < Post >
 Long postId; // 포스트 id<br>
