@@ -42,18 +42,15 @@ public class PostApiController {
         try{ curTag = PostTag.valueOf(postTag); } catch(Exception e){ postTag = "NULL";}
         try{ curType = PostType.valueOf(postType);} catch(Exception e){ postType = "NULL";}
 
-        if(postTag.equals("NULL") && postType.equals("NULL")) {
+        if(postTag.equals("NULL") && postType.equals("NULL"))
             posts = postService.findPosts(pageRequest);
-        }
-        else if(postTag.equals("NULL")){
+        else if(postTag.equals("NULL"))
             posts = postService.findPostsByType(curType, pageRequest);
-        }
-        else if(postType.equals("NULL")){
+        else if(postType.equals("NULL"))
             posts = postService.findPostsByTag(curTag, pageRequest);
-        }
-        else{
+        else
             posts = postService.findPostsByTagAndType(curTag, curType, pageRequest);
-        }
+        
         ret = posts.map(p -> new PostDto(p));
 
         return ret;
