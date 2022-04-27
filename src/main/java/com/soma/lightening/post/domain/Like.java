@@ -10,9 +10,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Getter
-@Setter
-@Table(name="like")
+@Getter @Setter
+@Table(name="like_post")
 public class Like {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,6 +40,7 @@ public class Like {
         like.setAccount(account);
         like.setLikeType(likeType);
         like.setPost(post);
+        like.setDate(new Date());
         return like;
     }
 }

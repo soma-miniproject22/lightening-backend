@@ -23,6 +23,7 @@ public class PostService {
 
     // newPost는 여기에 작성하면 된다 (readOnly = false)
     // account의 정보는 accountRepository.findOne
+    @Transactional
     public Long newPost(Long accountId, String appointmentDate, PostTag postTag, Date recruitEndDate, String postContent, int maxCount){
         OAuth2Account account = accountRepository.findById(accountId).get();
 
