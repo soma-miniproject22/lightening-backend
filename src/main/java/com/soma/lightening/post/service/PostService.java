@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class PostService {
     private final PostRepository postRepository;
@@ -36,12 +35,19 @@ public class PostService {
         return post.getId();
     }
 
-    public Page<Post> findPosts(Pageable pageable){
-        return postRepository.findAll(pageable);
+    @Transactional(readOnly = true)
+    public Page<Post> findPostsByTagAndType(String postTag, String postType, Pageable pageable){
+        PostTag curTag;
+        PostType curType;
+        try{ curTag = PostTag.valueOf(postTag);} catch(Exception e){curTag = PostTag.ALL;}
+        try{ curType = PostType.valueOf(postType);} catch(Exception e){curType = PostType.ALL;}
+
+        if(curTag == PostTag.ALL && curType == PostType.ALL)
+            return postRepository.findAll(pageable);
+        else if(curTag == PostTag.ALL)
+            return postRepository.findAllByPostType(curType, pageable);
+        else if(curType == PostType.ALL)
+            return postRepository.findAllByPostTag(curTag, pageable);
+        return postRepository.findAllByPostTagAndPostType(curTag, curType,pageable);
     }
-    public Page<Post> findPostsByTag(PostTag postTag, Pageable pageable){
-        return postRepository.findAllByPostTag(postTag, pageable);
-    }
-    public Page<Post> findPostsByType(PostType postType, Pageable pageable){ return postRepository.findAllByPostType(postType, pageable);}
-    public Page<Post> findPostsByTagAndType(PostTag postTag, PostType postType, Pageable pageable){ return postRepository.findAllByPostTagAndPostType(postTag, postType,pageable);}
 }

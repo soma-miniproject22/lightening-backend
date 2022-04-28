@@ -1,5 +1,5 @@
 package com.soma.lightening.post.domain;
 
 public enum PostType {
-    RECRUIT, COMPLETED
+    ALL, RECRUIT, COMPLETED
 }
