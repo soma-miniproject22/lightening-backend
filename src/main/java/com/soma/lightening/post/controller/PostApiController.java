@@ -23,6 +23,7 @@ import javax.servlet.ServletException;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RestController
@@ -32,8 +33,22 @@ public class PostApiController {
 
     @GetMapping("/api/posts")
     public Page<PostDto> posts(Pageable pageable,
-                               @RequestParam(value="tag", defaultValue = "ALL") String postTag,
-                               @RequestParam(value="type", defaultValue = "ALL") String postType){
-        return postService.findPostsByTagAndType(postTag, postType, pageable).map(p -> new PostDto(p));
+                               @RequestParam(value="tag", required = false) String postTag,
+                               @RequestParam(value="type", required = false) String postType){
+        PostTag curTag;
+        PostType curType;
+        try{ curTag = PostTag.valueOf(postTag);} catch(Exception e){curTag = null;}
+        try{ curType = PostType.valueOf(postType);} catch(Exception e){curType = null;}
+
+        boolean tagNull = Objects.equals(curTag, null);
+        boolean typeNull = Objects.equals(curType, null);
+
+        if(tagNull && typeNull)
+            return postService.findPosts(pageable).map(p -> new PostDto(p));
+        else if(tagNull)
+            return postService.findPostsByType(curType, pageable).map(p -> new PostDto(p));
+        else if(typeNull)
+            return postService.findPostsByTag(curTag, pageable).map(p -> new PostDto(p));
+        return postService.findPostsByTagAndType(curTag, curType, pageable).map(p -> new PostDto(p));
     }
 }
