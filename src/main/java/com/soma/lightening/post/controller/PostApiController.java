@@ -40,15 +40,12 @@ public class PostApiController {
         try{ curTag = PostTag.valueOf(postTag);} catch(Exception e){curTag = null;}
         try{ curType = PostType.valueOf(postType);} catch(Exception e){curType = null;}
 
-        boolean tagNull = Objects.equals(curTag, null);
-        boolean typeNull = Objects.equals(curType, null);
-
-        if(tagNull && typeNull)
-            return postService.findPosts(pageable).map(p -> new PostDto(p));
-        else if(tagNull)
-            return postService.findPostsByType(curType, pageable).map(p -> new PostDto(p));
-        else if(typeNull)
-            return postService.findPostsByTag(curTag, pageable).map(p -> new PostDto(p));
-        return postService.findPostsByTagAndType(curTag, curType, pageable).map(p -> new PostDto(p));
+        if(curTag == null && curType == null)
+            return postService.findPosts(pageable);
+        else if(curTag == null)
+            return postService.findPostsByType(curType, pageable);
+        else if(curType == null)
+            return postService.findPostsByTag(curTag, pageable);
+        return postService.findPostsByTagAndType(curTag, curType, pageable);
     }
 }
