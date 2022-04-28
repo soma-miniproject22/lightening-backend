@@ -22,7 +22,7 @@ public class PostDto{
     private PostType postType; // post 모집완료상태
     private List<EmotionDto> emotions; // 관심/참여 인원
     private String postContent; // 내용
-    private Date meetDate; // 약속 시간
+    private String meetDate; // 약속 시간
     private Date recruitEndDate; // 게시 종료 시간
     private int maxCount; // 최대 인원
 
@@ -36,7 +36,7 @@ public class PostDto{
         this.emotions = post.getEmotionList().stream().map(e -> new EmotionDto(e)).collect(Collectors.toList());
         this.postTag = post.getPostTag();
         this.postContent = post.getPostContent();
-        this.meetDate = post.getDate();
+        this.meetDate = post.getAppointmentDate();
         this.recruitEndDate = post.getRecruitEndDate();
         this.maxCount = post.getMaxCount();
     }
