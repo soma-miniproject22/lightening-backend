@@ -55,7 +55,7 @@ public class PostApiController {
     }
 
     @PostMapping("/post")
-    @PreAuthorize("HasAnyRole('USER')")
+    @PreAuthorize("hasAnyRole('USER')")
     public ResponseEntity<CommonResponse> writePost(@Valid @RequestBody WritePostRequestDto writePostRequestDto) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
