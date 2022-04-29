@@ -67,4 +67,7 @@ public class Post {
 
         return post;
     }
+    public void addEmotion(Emotion e) {
+        this.emotionList.add(e);
+    }
 }

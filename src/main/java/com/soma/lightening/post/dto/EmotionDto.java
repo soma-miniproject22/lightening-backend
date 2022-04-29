@@ -8,13 +8,13 @@ import lombok.Getter;
 @Data
 @Getter
 public class EmotionDto{
-    private Long accountId; // 참여자
-    private String accountUsername; // 참여자 아이디
+    private String username; // 참여자 아이디
+    private String nickname;
     private EmotionType emotionType; // 참여 타입(관심, 참가)
 
     public EmotionDto(Emotion emotion) {
-        this.accountId = emotion.getAccount().getId();
-        this.accountUsername = emotion.getAccount().getUsername();
+        this.username = emotion.getAccount().getUsername();
+        this.nickname = emotion.getAccount().getNickname();
         this.emotionType = emotion.getEmotionType();
     }
 }

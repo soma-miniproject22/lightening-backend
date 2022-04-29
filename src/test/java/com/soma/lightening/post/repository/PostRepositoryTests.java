@@ -40,7 +40,6 @@ public class PostRepositoryTests {
 
     @Test
     @Transactional
-    @Rollback(false)
     void postsPrint(){
         OAuth2Account account = new OAuth2Account("asdasdsafasf","이상빈");
         oAuth2AccountRepository.save(account);
@@ -56,34 +55,5 @@ public class PostRepositoryTests {
 
         Post p = postRepository.findById(cid).get();
         p.setPostType(PostType.COMPLETED);
-    }
-
-    @Test
-    @Transactional
-    @Rollback(false)
-    void EmotionTest(){
-        OAuth2Account account = new OAuth2Account("asdasdsafasf","이상빈");
-        oAuth2AccountRepository.save(account);
-
-        OAuth2Account account2 = new OAuth2Account("wasdsadasdasdasd","김수홍");
-        oAuth2AccountRepository.save(account2);
-
-        Long id = postService.newPost(account.getId(),"오늘 오후까지", PostTag.MEAL, new Date(), "tempA",1024);
-        Long cid = postService.newPost(account.getId(), "오늘 오후까지", PostTag.ALCOHOL, new Date(), "tempC", 1024);
-
-        System.out.println(id);
-        System.out.println(cid);
-
-        Long lid = emotionService.newEmotion(account2.getId(), id, EmotionType.WILLING);
-        Long lid2 = emotionService.newEmotion(account2.getId(), cid, EmotionType.PARTICIPATE);
-
-        Emotion emotion = emotionRepository.findById(lid).get();
-        Emotion emotion1 = emotionRepository.findById(lid2).get();
-
-        Assertions.assertThat(id).isEqualTo(emotion.getPost().getId());
-        Assertions.assertThat(cid).isEqualTo(emotion1.getPost().getId());
-
-        System.out.println(emotion.getPost().getPostTag());
-        System.out.println(emotion1.getPost().getPostTag());
     }
 }

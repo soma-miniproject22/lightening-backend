@@ -8,6 +8,7 @@ import com.soma.lightening.post.domain.Post;
 import com.soma.lightening.post.repository.EmotionRepository;
 import com.soma.lightening.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,8 +23,9 @@ public class EmotionService {
     private final OAuth2AccountRepository accountRepository;
 
     @Transactional
-    public Long newEmotion(Long accountId, Long postId, EmotionType emotionType){
-        OAuth2Account account = accountRepository.findById(accountId).get();
+    public Long newEmotion(String username, Long postId, EmotionType emotionType){
+        OAuth2Account account = accountRepository.findOneWithAuthoritiesByUsername(username)
+                .orElseThrow(()->new UsernameNotFoundException("이름 찾을 수 없음"));
         Post post = postRepository.findById(postId).get();
 
         // 이후 예외처리 사용
@@ -33,6 +35,8 @@ public class EmotionService {
 
         Emotion emotion = Emotion.newEmotion(account, post, emotionType);
         emotionRepository.save(emotion);
+        post.addEmotion(emotion);
+
         return emotion.getId();
     }
 

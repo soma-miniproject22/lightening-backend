@@ -14,9 +14,8 @@ import java.util.stream.Collectors;
 @Getter
 public class PostDto{
     private Long postId; // 포스트 id
-    private Long accountId; // 작정자 id
-    private String accountUsername;
-    private String accountNickname;
+    private String username;
+    private String nickname;
     private String accountImage;
     private PostTag postTag; // post 태그
     private PostType postType; // post 모집완료상태
@@ -28,9 +27,8 @@ public class PostDto{
 
     public PostDto(Post post){
         this.postId = post.getId();
-        this.accountId = post.getAccount().getId();
-        this.accountNickname = post.getAccount().getNickname();
-        this.accountUsername = post.getAccount().getUsername();
+        this.nickname = post.getAccount().getNickname();
+        this.username = post.getAccount().getUsername();
         this.accountImage = post.getAccount().getProfileImage();
         this.postType = post.getPostType();
         this.emotions = post.getEmotionList().stream().map(e -> new EmotionDto(e)).collect(Collectors.toList());

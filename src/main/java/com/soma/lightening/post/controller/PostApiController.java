@@ -14,10 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MissingServletRequestParameterException;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
 import java.time.LocalDateTime;
@@ -28,10 +25,11 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api")
 public class PostApiController {
     private final PostService postService;
 
-    @GetMapping("/api/posts")
+    @GetMapping("/posts")
     public Page<PostDto> posts(Pageable pageable,
                                @RequestParam(value="tag", required = false) String postTag,
                                @RequestParam(value="type", required = false) String postType){
