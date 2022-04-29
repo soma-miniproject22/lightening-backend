@@ -38,22 +38,4 @@ public class PostRepositoryTests {
         System.out.println(post.getDate());
     }
 
-    @Test
-    @Transactional
-    void postsPrint(){
-        OAuth2Account account = new OAuth2Account("asdasdsafasf","이상빈");
-        oAuth2AccountRepository.save(account);
-
-        OAuth2Account account2 = new OAuth2Account("wasdsadasdasdasd","김수홍");
-        oAuth2AccountRepository.save(account2);
-
-        Long id = postService.newPost(account.getId(),"오늘 오후까지", PostTag.MEAL, new Date(), "tempA",1024);
-        Post post = postRepository.findById(id).get();
-        postService.newPost(account.getId(),"오늘 오후까지", PostTag.COFFEE, new Date(), "tempB",1024);
-        Long cid = postService.newPost(account2.getId(), "오늘 오후까지", PostTag.ALCOHOL, new Date(), "tempC", 1024);
-        postService.newPost(account2.getId(),"오늘 오후까지", PostTag.MEAL, new Date(), "tempD",1024);
-
-        Post p = postRepository.findById(cid).get();
-        p.setPostType(PostType.COMPLETED);
-    }
 }
