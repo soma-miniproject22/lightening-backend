@@ -10,6 +10,7 @@ import com.soma.lightening.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,11 +29,11 @@ public class PostService {
     // newPost는 여기에 작성하면 된다 (readOnly = false)
     // account의 정보는 accountRepository.findOne
     @Transactional
-    public Long newPost(Long accountId, String appointmentDate, PostTag postTag, Date recruitEndDate, String postContent, int maxCount){
-        OAuth2Account account = accountRepository.findById(accountId).get();
+    public Long newPost(String username, String appointmentDate, PostTag postTag, Date recruitEndDate, String content, int maxCount){
+        OAuth2Account account = accountRepository.findOneWithAuthoritiesByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("이름 없음"));
 
-        Post post = Post.newPost(account, appointmentDate, postTag, recruitEndDate, postContent, maxCount);
-
+        Post post = Post.newPost(account, appointmentDate, postTag, recruitEndDate, content, maxCount);
         postRepository.save(post);
         return post.getId();
     }
