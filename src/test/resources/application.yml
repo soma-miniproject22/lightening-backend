@@ -6,7 +6,7 @@ spring:
 
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:tcp://localhost/~/test
+    url: jdbc:h2:mem:test
     username: sa
     password:
 
@@ -21,15 +21,3 @@ spring:
         format_sql: true
 
     defer-datasource-initialization: true # hibernate ? ??? ??? ? data.sql ? ????? ??.
-
-jwt:
-  header: Authorization
-  secret: aGVsbG8gd29ybGQgbXkgbmFtZSBpcyBzc29uZyBoYWhhaGFoYWhhaGFoYSBydXJ1cnVydXJ1cnVydXJ1ZHNmc2Rmc2Rmc2Rmc2EK # fill in base64 [command: echo {plain_text} | base64]
-  access-token-validity-in-seconds: 6000 # 100 min
-
-oauth:
-  frontend-domain: http://localhost:8080
-  domain: http://localhost:8080
-  github:
-    clientId: 0c696e3a1df74b0acf03
-    secretId: a9aedc2c341cb52d3954a3b49232488c17c98a31
