@@ -34,7 +34,7 @@ public class EmotionService {
 
         // 이미 눌렀으면 불가능하게
         Emotion beforeEmotion = emotionRepository.findByAccountAndPost(account, post);
-        if(beforeEmotion != null) throw new DuplicateMemberException();
+        if(beforeEmotion != null && beforeEmotion.getEmotionType() == emotionType) throw new DuplicateMemberException();
 
         Emotion emotion = Emotion.newEmotion(account, post, emotionType);
         emotionRepository.save(emotion);
